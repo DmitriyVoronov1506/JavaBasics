@@ -1,5 +1,9 @@
 package itstep.learning;
 
+import itstep.learning.oop.Book;
+import itstep.learning.oop.Journal;
+import itstep.learning.oop.Library;
+
 import java.util.Scanner;
 
 /**
@@ -9,6 +13,17 @@ import java.util.Scanner;
 public class App
 {
     public static void main( String[] args )
+    {
+        Library library = new Library();
+        library.add(new Book("Knuth", "Art of programming"));
+        library.add(new Book("Shevchenko", "Kobzar"));
+        library.add(new Journal(10, "ArgC & ArgV"));
+        library.add(new Journal(5, "Nature"));
+
+        library.printFunds();
+    }
+
+    public static void hello( String[] args )
     {
         // region Переменные и типы данных
 
@@ -50,6 +65,10 @@ public class App
 
         // endregion
 
+        // region Guess Game
+
+        /* comment
+
         int min = 1;
         int max = 100;
         boolean guess = false;
@@ -75,5 +94,10 @@ public class App
                 System.err.println("The number you need to guess in smaller!");
             }
         }
+
+         */
+        // endregion
+
+
     }
 }
