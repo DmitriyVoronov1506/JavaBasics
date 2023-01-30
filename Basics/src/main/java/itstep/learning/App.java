@@ -3,7 +3,9 @@ package itstep.learning;
 import itstep.learning.oop.Book;
 import itstep.learning.oop.Journal;
 import itstep.learning.oop.Library;
+import itstep.learning.oop.Newspaper;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -19,6 +21,8 @@ public class App
         library.add(new Book("Shevchenko", "Kobzar"));
         library.add(new Journal(10, "ArgC & ArgV"));
         library.add(new Journal(5, "Nature"));
+        library.add(new Newspaper(LocalDate.now(), "Today's newspaper"));
+        library.add(new Newspaper(LocalDate.of(2022, 10, 15), "Last year newspaper"));
 
         library.printFunds();
     }
