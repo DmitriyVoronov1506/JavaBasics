@@ -1,7 +1,7 @@
 package itstep.learning.oop;
 
 import java.time.LocalDate;
-public class Newspaper extends Literature {
+public class Newspaper extends Literature implements Printed {
     public LocalDate releaseDate;
 
     public Newspaper(LocalDate releaseDate, String title) {

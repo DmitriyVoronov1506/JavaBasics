@@ -1,10 +1,8 @@
 package itstep.learning;
 
-import itstep.learning.oop.Book;
-import itstep.learning.oop.Journal;
-import itstep.learning.oop.Library;
-import itstep.learning.oop.Newspaper;
+import itstep.learning.oop.*;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -24,7 +22,22 @@ public class App
         library.add(new Newspaper(LocalDate.now(), "Today's newspaper"));
         library.add(new Newspaper(LocalDate.of(2022, 10, 15), "Last year newspaper"));
 
+        try
+        {
+            library.add(new Comics("Marvel", 1, "13.09.2022"));
+        }
+        catch (ParseException ignored)
+        {
+            System.err.println("Date parse error");
+        }
+
+        library.add(new AudioBook("Kobzar. Shevchenko", "SuperSound Studio"));
+
         library.printFunds();
+        System.out.println("-----------------------------------------");
+        library.showPrinted();
+        System.out.println("-----------------------------------------");
+        library.playAll();
     }
 
     public static void hello( String[] args )
