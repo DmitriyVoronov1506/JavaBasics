@@ -4,26 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Comics extends Literature implements Printed, Presentable {
-    private int number;
+public class Hologram extends Literature implements Presentable {
     private Date date;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
 
-    public Comics() {
-    }
-
-    public Comics(String title, int number, String date) throws ParseException {
-        this.number = number;
+    public Hologram(String title, String date) throws ParseException {
         this.date = dateFormat.parse(date);
         super.setTitle(title);
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public Date getDate() {
@@ -36,6 +23,6 @@ public class Comics extends Literature implements Printed, Presentable {
 
     @Override
     public String toString() {
-        return String.format("Comics: %s No %d (%s)", super.getTitle(), this.number, dateFormat.format(this.date));
+        return String.format("Hologram: %s (%s)", super.getTitle(), dateFormat.format(this.date));
     }
 }

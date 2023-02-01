@@ -25,6 +25,7 @@ public class App
         try
         {
             library.add(new Comics("Marvel", 1, "13.09.2022"));
+            library.add(new Hologram("Historic Hologram", "01.02.2023"));
         }
         catch (ParseException ignored)
         {
@@ -38,6 +39,8 @@ public class App
         library.showPrinted();
         System.out.println("-----------------------------------------");
         library.playAll();
+        System.out.println("-----------------------------------------");
+        library.showPresentable();
     }
 
     public static void hello( String[] args )
