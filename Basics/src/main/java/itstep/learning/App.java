@@ -16,8 +16,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        new IoDemo().run();
-        new DirDemo().run();
+        new IoDemo().createFileWithRandomStrings();
+        //new IoDemo().run();
+        //new DirDemo().run();
     }
 
     public static void oop( String[] args )
