@@ -1,5 +1,7 @@
 package itstep.learning;
 
+import itstep.learning.files.DirDemo;
+import itstep.learning.files.IoDemo;
 import itstep.learning.oop.*;
 
 import java.text.ParseException;
@@ -13,6 +15,12 @@ import java.util.Scanner;
 public class App
 {
     public static void main( String[] args )
+    {
+        new IoDemo().run();
+        new DirDemo().run();
+    }
+
+    public static void oop( String[] args )
     {
         Library library = new Library();
         library.add(new Book("Knuth", "Art of programming"));
