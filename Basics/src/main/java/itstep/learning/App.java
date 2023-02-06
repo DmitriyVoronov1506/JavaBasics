@@ -1,5 +1,6 @@
 package itstep.learning;
 
+import itstep.learning.db.DbDemo;
 import itstep.learning.files.DirDemo;
 import itstep.learning.files.IoDemo;
 import itstep.learning.oop.*;
@@ -16,7 +17,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        new IoDemo().createFileWithRandomStrings();
+        new DbDemo().run();
+        //new IoDemo().createFileWithRandomStrings();
         //new IoDemo().run();
         //new DirDemo().run();
     }
