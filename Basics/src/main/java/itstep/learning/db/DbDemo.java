@@ -2,6 +2,7 @@ package itstep.learning.db;
 
 import java.sql.*;
 import java.util.Random;
+import java.util.Scanner;
 
 public class DbDemo {
     public void run() {
@@ -77,10 +78,35 @@ public class DbDemo {
 
         sql = "SELECT id, num, str FROM rands WHERE `num` < ?";
 
+        Scanner scanner = new Scanner(System.in);
+
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            System.out.println("Num < 300");
-            preparedStatement.setInt(1, 300);
+            System.out.println("Enter your number: ");
+            int num = scanner.nextInt();
+            preparedStatement.setInt(1, num);
+            ResultSet res = preparedStatement.executeQuery();
+
+            while(res.next()) {
+                System.out.println(res.getString(1) + " " + res.getInt(2) + " " + res.getString(3));
+            }
+
+            res.close();
+        }
+        catch (SQLException ex) {
+            System.err.println("SELECT  prepared statement error: " + ex.getMessage());
+            return;
+        }
+
+        System.out.println("------------------------------------------------------------------");
+
+        sql = "SELECT id, num, str FROM rands WHERE `str` LIKE ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            System.out.println("Enter your string of part of string: ");
+            String strPattern = scanner.next();
+            preparedStatement.setString(1, "%" + strPattern + "%");
             ResultSet res = preparedStatement.executeQuery();
 
             while(res.next()) {
