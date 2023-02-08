@@ -1,8 +1,11 @@
 package itstep.learning;
 
+import com.google.inject.Guice;
 import itstep.learning.db.DbDemo;
 import itstep.learning.files.DirDemo;
 import itstep.learning.files.IoDemo;
+import itstep.learning.ioc.AppModule;
+import itstep.learning.ioc.Starter;
 import itstep.learning.oop.*;
 
 import java.text.ParseException;
@@ -17,7 +20,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        new DbDemo().run();
+        Guice
+             .createInjector(new AppModule())
+             .getInstance(Starter.class)
+             .run();
+
+        //new DbDemo().run();
         //new IoDemo().createFileWithRandomStrings();
         //new IoDemo().run();
         //new DirDemo().run();
@@ -128,7 +136,5 @@ public class App
 
          */
         // endregion
-
-
     }
 }
