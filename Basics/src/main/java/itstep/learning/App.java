@@ -1,6 +1,7 @@
 package itstep.learning;
 
 import com.google.inject.Guice;
+import itstep.learning.asyncs.ThreadDemo;
 import itstep.learning.db.DbDemo;
 import itstep.learning.files.DirDemo;
 import itstep.learning.files.IoDemo;
@@ -18,12 +19,14 @@ import java.util.Scanner;
  */
 public class App
 {
-    public static void main( String[] args )
-    {
-        Guice
-             .createInjector(new AppModule())
-             .getInstance(Starter.class)
-             .run();
+    public static void main( String[] args ) throws InterruptedException {
+
+        new ThreadDemo().run();
+
+       // Guice
+        //     .createInjector(new AppModule())
+        //     .getInstance(Starter.class)
+        //     .run();
 
         //new DbDemo().run();
         //new IoDemo().createFileWithRandomStrings();
