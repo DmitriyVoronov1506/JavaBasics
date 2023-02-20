@@ -9,15 +9,17 @@ public class SyncDemo {
 
     public void run() {
 
-        random = new Random();
-        sum = 100;
-        activeThreads = 12;
+        //random = new Random();
+        //sum = 100;
+        //activeThreads = 12;
 
         time1 = System.nanoTime();
 
-        for(int i = 0; i < 12; ++i) {
-            new Thread(this::plusPercent2).start();
-        }
+        //for(int i = 0; i < 12; ++i) {
+        //    new Thread(this::plusPercent2).start();
+        //}
+
+        getQEAnswers(2,15,-20);
     }
 
     private double sum;
@@ -76,10 +78,79 @@ public class SyncDemo {
                 onFinish();
             }
         }
+
     }
 
     private void onFinish() {
         time2 = System.nanoTime();
         System.out.println((time2 - time1) / 1e9);
+    }
+
+    private final Object qELocker = new Object();
+    private final Object tLocker = new Object();
+    private int count = 2;
+
+    private void getQEAnswers(int a, int b, int c) {
+
+        System.out.println(a + "x^2+" + b + "x" + c + "=0");
+
+        int D = b * b - (4 * a * c);
+
+        System.out.println("Discriminant: " + D);
+
+        Runnable firstRoot = () -> {
+
+            double firstAnswer;
+            double temp1;
+
+            if (D >= 0) {
+
+                synchronized(qELocker) {
+
+                    temp1 = (-b - Math.sqrt(D)) / (2 * a);
+                    firstAnswer = temp1;
+                }
+
+                System.out.println("Answer 1: " + firstAnswer);
+            }
+            else {
+                System.out.println("Doesn't exist");
+            }
+
+            synchronized (tLocker) {
+
+                count -= 1;
+                if(count == 0) onFinish();
+            }
+        };
+
+        Runnable secondRoot = () -> {
+
+            double secondAnswer;
+            double temp2;
+
+            if (D >= 0) {
+
+                synchronized(qELocker) {
+
+                    temp2 = (-b + Math.sqrt(D)) / (2 * a);
+                    secondAnswer = temp2;
+                }
+
+                System.out.println("Answer 2: " + secondAnswer);
+            }
+            else {
+                System.out.println("Doesn't exist");
+            }
+
+            synchronized (tLocker) {
+
+                count -= 1;
+                if(count == 0) onFinish();
+            }
+        };
+
+        new Thread(firstRoot).start();
+        new Thread(secondRoot).start();
     }
 }
